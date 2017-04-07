@@ -21,7 +21,9 @@ public class A_B_point_Etoile implements Automate {
 	public Session initier() {
 		ImplemSession s = new ImplemSession();
 		s.setNumero(numeroSession);
-		numeroSession++;
+		synchronized (this) {
+			numeroSession++;
+		}
 		executions.put(s, Etat.UN);
 		return s;
 	}
