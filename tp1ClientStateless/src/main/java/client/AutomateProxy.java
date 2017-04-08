@@ -1,16 +1,16 @@
 package client;
 
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
-import rest.Automate;
-import rest.Resultat;
-import rest.Session;
+import rest.*;
 
 public class AutomateProxy implements Automate {
 	private WebTarget cibleInitier;
 	private WebTarget cibleAccepter;
 	private MediaType typeContenu;
+
 	
 	public AutomateProxy(String uriBase, MediaType typeContenu){
 		WebTarget cible = AppliCliente.clientJAXRS().target(uriBase);
@@ -22,14 +22,18 @@ public class AutomateProxy implements Automate {
 	
 	@Override
 	public Session initier() {
-		System.out.println("INITIER");
-		return null; // TODO
+	    Session session = new ImplemSession();
+        cibleInitier.request().post(Entity.entity(session, typeContenu));
+
+        return session;
 	}
 
 	@Override
 	public Resultat accepter(char x, Session id) {
-		System.out.println("ACCEPTER");
-		return null; // TODO
+	    return cibleAccepter
+                .path(String.valueOf(x))
+                .queryParam("id", id.getEtatExecution() + "-" + id.getNumero())
+                .request().get(Resultat.class);
 	}
 
 }
