@@ -1,9 +1,11 @@
 package modele;
 
+import javax.inject.Singleton;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "ressource")
+@Singleton
 public class Ressource {
 	public final static Ressource SINGLETON;
 	static {
@@ -22,7 +24,7 @@ public class Ressource {
 		this.i = j;
 	}
 
-	@XmlElement(name = "i")
+	@XmlElement(name = "x")
 	public int getI() {
 		return i;
 	}

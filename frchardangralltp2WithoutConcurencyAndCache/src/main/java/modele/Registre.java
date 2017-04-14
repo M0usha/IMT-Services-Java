@@ -3,7 +3,7 @@ package modele;
 import javax.inject.Singleton;
 import javax.ws.rs.Path;
 
-@Path("/")
+@Path("optimiste")
 @Singleton
 public class Registre implements ServiceRegistre {
 
