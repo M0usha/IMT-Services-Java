@@ -1,0 +1,31 @@
+package modele;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+
+import configuration.JAXRS;
+import infrastructure.jaxrs.HyperLien;
+import infrastructure.jaxrs.HyperLiens;
+import infrastructure.jaxrs.annotations.ReponsesCreatedPOST;
+
+public interface Bibliotheque {
+	@POST
+	@ReponsesCreatedPOST
+	@Consumes(JAXRS.TYPE_MEDIA)
+	@Produces(JAXRS.TYPE_MEDIA)
+	HyperLien<LivreRessource> ajouter(Livre l);
+	
+	@GET
+	@Produces(JAXRS.TYPE_MEDIA)
+	HyperLien<LivreRessource> chercher(@QueryParam(JAXRS.CLE_TITRE) Livre l);
+		
+	@GET
+	@Path(JAXRS.SOUSCHEMIN_CATALOGUE)
+	@Produces(JAXRS.TYPE_MEDIA)
+	HyperLiens<LivreRessource> repertorier();
+	
+}
