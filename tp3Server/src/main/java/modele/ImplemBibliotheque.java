@@ -8,6 +8,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.Set;
@@ -24,17 +26,21 @@ public class ImplemBibliotheque implements BibliothequeArchive {
 
 	private ConcurrentMap<IdentifiantLivre, Livre> catalogue;
 	private int compteur; // dernier identifiant utilisé (-1 : non utilisé)
+	private Lock verrou;
 
 	public ImplemBibliotheque() {
 		System.out.println("Déploiement de " + this + " : " +this.getClass());
 		catalogue = new ConcurrentHashMap<IdentifiantLivre, Livre>();
 		compteur = -1;
+		this.verrou = new ReentrantLock();
 	}
 
 	@Override
 	public HyperLien<LivreRessource> ajouter(Livre l) {
 		IdentifiantLivre id = null;
+		verrou.lock();
 		compteur++;
+		verrou.unlock();
 		id = new ImplemIdentifiantLivre(Integer.toString(compteur));
 		catalogue.put(id, l);
 		final URI adresse = URI.create("bibliotheque/" + id.getId());

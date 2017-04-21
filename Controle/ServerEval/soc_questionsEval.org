@@ -1,0 +1,74 @@
+* Nom : CHARDAN Anaël
+
+* Questions
+
+** Donner les cinq principes caractérisant les architectures REST.
+- L'adressabilité des ressources
+- Interface uniforme
+- Représentation des ressources
+- Communication sans états
+- Canaux (hyperliens) comme moteur de l'état applicatif
+
+
+**  Donner les règles chimiques décrivant le comportement du service 2 (correspondant à l'état *DEUX*).
+
+- accepterDEUX(ar, ‘b’) -> ar(accepterUN)
+- accepterDEUX(ar, x) & (x != ‘b’) -> ar(KO)
+
+
+
+** Décrire le filtrage réalisé par le filtre *AdapterReponsesNull404GET*. 
+- Si c'est un GET et que la réponse est un no content, on change le status en 404Not Found tout en logguant
+- Si c'est un GET et que la réponse est un 404 NOT FOUND, on loggue
+
+Dans les deux cas on met a jour l'entité de la réponse pour mettre l'uri qui était appelé
+
+Cela permet de respecter les standard du web
+
+** A quoi servent les annotations de la classe *Hyperlien* ? 
+- @XmlRootElement(name=JAXRS.BALISE_HYPERLIEN) dit que la calass est traductible en XML et nomme le noeud racine
+
+** Dans quelle norme sont-elles définies ?
+- Ces annotations font fait partie de la norme JAXB
+
+** Compléter les définitions suivantes.
+- Une requête est dite pure lorsque qu'elle ne modifie pas l'état du serveur
+- Une requête est dite idempotente lorsqu'on peut la rejouer autant de fois que l'on veut et que le résultat produit est toujours le même
+
+** Qualifier chaque type de requête HTTP par pur ou impur d'une part, et idempotent ou non-idempotent d'autre part.
+
+- GET : pur, idempotent
+- PUT :  impur, idempotent
+- POST : impur, non idempotent
+
+** Quelles sont les cinq composantes d'une URI ?
+- Protocole
+- Nom de domaine
+- Port
+- URI
+- Les parametres
+
+** Définir la requête initiale (méthode HTTP et URI).
+- METHODE: GET -> http://localhost:9090/tp4-eval-server/serveur0/automate/initial
+
+** Quelle est la réponse ?
+- METHODE: GET -> http://localhost:9090/tp4-eval-server/serveur0/automate/initial
+REPONSE:  <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+          <hyperlien uri="http://localhost:9090/tp4-eval-server/serveur1"/>
+
+** Quel est le statut de la réponse ?
+- METHODE: GET -> http://localhost:9090/tp4-eval-server/serveur0/automate/initial
+STATUS: 200
+
+** Décrire une requête correspondant à l'invocation de la méthode *accepter* dans l'état *UN* et avec l'étiquette *'a'*.
+
+- méthode Http: GET
+- adresse: http://localhost:9090/tp4-eval-server/serveur1/automate/suivant?etiquette=a
+- champ Accept: application/xml
+
+** Donner la réponse à la requête précédente au format JSON.
+
+- On a un status de reponse : 406 Not acceptable
+
+
+
