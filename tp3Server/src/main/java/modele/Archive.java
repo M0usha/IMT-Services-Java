@@ -7,9 +7,6 @@ import javax.ws.rs.PathParam;
 import infrastructure.jaxrs.annotations.ReponsesNull404GET;
 
 public interface Archive {
-	@ReponsesNull404GET
-	@GET
 	@Path("{id}")
-	public LivreRessource sousRessource(@PathParam("id") IdentifiantLivre id) ; // Une sous-ressource ne peut-être une cible de requête.
-		
+	public LivreRessource sousRessource(@PathParam("id") IdentifiantLivre id) ; // Une sous-ressource ne peut-être une cible de requête
 }

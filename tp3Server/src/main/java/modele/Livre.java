@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import configuration.JAXRS;
 import infrastructure.jaxrs.ConversionStringLivre;
 
-
 @XmlRootElement(name="livre")
 public interface Livre {
 	@GET

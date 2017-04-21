@@ -17,7 +17,4 @@ public class ImplemLivreRessource implements LivreRessource {
 	public String getTitre() {
 		return this.l.getTitre();
 	}
-
-
-
 }

@@ -1,7 +1,5 @@
 package modele;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 public class ImplemIdentifiantLivre implements IdentifiantLivre {
 	private String id;
 	
@@ -36,6 +34,4 @@ public class ImplemIdentifiantLivre implements IdentifiantLivre {
 	public String toString() {
 		return this.getId();
 	}
-
-	
 }

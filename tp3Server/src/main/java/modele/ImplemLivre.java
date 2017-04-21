@@ -38,10 +38,4 @@ public class ImplemLivre implements Livre {
 	public String toString() {
 		return this.getTitre();
 	}
-
-	public Livre fromString(String x) {
-	    return new ImplemLivre(x);
-    }
-	
-	
 }
