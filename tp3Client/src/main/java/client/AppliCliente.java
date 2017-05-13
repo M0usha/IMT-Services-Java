@@ -23,7 +23,7 @@ import org.glassfish.jersey.logging.LoggingFeature;
 
 public class AppliCliente {
 
-	private static final String ADRESSE = "http://localhost:9091/tp3-server/bibliotheque"; // TODO
+	private static final String ADRESSE = "http://localhost:8085/tp3-server/bibliotheque"; // TODO
 	
 	public static Client clientJAXRS() {
 		ClientConfig config = new ClientConfig();
