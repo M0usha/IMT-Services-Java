@@ -1,5 +1,6 @@
 package modele;
 
+import configuration.JAXRS;
 import infrastructure.jaxrs.HyperLien;
 import infrastructure.jaxrs.LienVersRessource;
 
@@ -15,21 +16,23 @@ public abstract class RechercheAsynchroneAbstraite implements AlgorithmeRecherch
 
     protected Future<HyperLien<LivreRessource>> rechercheAsync(
             HyperLien<BibliothequeArchive> h, Livre l, Client client) {
-        //TODO DON'T UNDERSTAND THIS
 
-        BibliothequeArchive a = LienVersRessource.proxy(client, h, BibliothequeArchive.class);
-
-//        return a.chercherAsynchrone(l);
-        return null;
+        return client
+                .target(h.getUri())
+                .queryParam(JAXRS.CLE_TITRE, l)
+                .request()
+                .async()
+                .get(ImplemPortail.typeRetourChercherAsync());
     }
 
     protected Future<HyperLien<LivreRessource>> rechercheAsyncAvecRappel(
             HyperLien<BibliothequeArchive> h, Livre l, Client client,
             InvocationCallback<HyperLien<LivreRessource>> retour) {
-        //TODO DON'T UNDERSTAND THIS
-        BibliothequeArchive a = LienVersRessource.proxy(client, h, BibliothequeArchive.class);
-
-//        a.chercherAsynchrone(l, new A)
-        return null;
+        return client
+                .target(h.getUri())
+                .queryParam(JAXRS.CLE_TITRE, l)
+                .request()
+                .async()
+                .get(retour);
     }
 }

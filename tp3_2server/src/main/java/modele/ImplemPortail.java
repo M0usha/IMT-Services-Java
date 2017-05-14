@@ -47,8 +47,19 @@ public class ImplemPortail implements RechercheAsynchroneDeclenchantRechercheSyn
         bibliotheques = Initialisation.bibliotheques();
 
         //Ajout des algos
-        AlgorithmeRecherche rechercheSynchoneSequentielle = new RechercheSynchroneSequentielle();
-        tableAlgos.put(rechercheSynchoneSequentielle.nom(), rechercheSynchoneSequentielle);
+        this.addAlgo(new RechercheSynchroneSequentielle());
+        this.addAlgo(new RechercheSynchroneMultiTaches());
+        this.addAlgo(new RechercheSynchroneStreamParallele());
+        this.addAlgo(new RechercheSynchroneStreamRx());
+        this.addAlgo(new RechercheAsynchroneSequentielle());
+        this.addAlgo(new RechercheAsynchroneMultiTaches());
+        this.addAlgo(new RechercheAsynchroneStreamParallele());
+        this.addAlgo(new RechercheAsynchroneStreamRx());
+    }
+
+    private void addAlgo(AlgorithmeRecherche algo)
+    {
+        tableAlgos.put(algo.nom(), algo);
     }
 
     @Override
@@ -63,12 +74,10 @@ public class ImplemPortail implements RechercheAsynchroneDeclenchantRechercheSyn
 
     @Override
     public HyperLiens<LivreRessource> repertorier() {
-        return bibliotheques.stream().map(
-                e -> {
-                    BibliothequeArchive a = LienVersRessource.proxy(client, e, BibliothequeArchive.class);
-                    return a.repertorier();
-                }
-        ).reduce(new HyperLiens<LivreRessource>(), (sum, element) -> Outils.sommeHyperLiens(sum, element));
+        return bibliotheques.stream()
+                .map(e -> LienVersRessource.proxy(client, e, BibliothequeArchive.class))
+                .map(Bibliotheque::repertorier)
+                .reduce(new HyperLiens<>(), Outils::sommeHyperLiens);
     }
 
     public static GenericType<HyperLien<LivreRessource>> typeRetourChercherAsync(){

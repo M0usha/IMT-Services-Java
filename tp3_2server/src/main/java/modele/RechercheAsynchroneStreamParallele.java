@@ -2,6 +2,7 @@ package modele;
 
 import infrastructure.jaxrs.HyperLien;
 import infrastructure.jaxrs.LienVersRessource;
+import infrastructure.jaxrs.Outils;
 
 import javax.ws.rs.client.Client;
 import java.util.List;
@@ -9,21 +10,20 @@ import java.util.List;
 import static java.util.Objects.isNull;
 
 /**
- * Created by anael on 13/05/2017.
+ * Created by anael on 14/05/2017.
  */
-public class RechercheSynchroneSequentielle extends RechercheSynchroneAbstraite {
-
+public class RechercheAsynchroneStreamParallele extends RechercheAsynchroneAbstraite {
     @Override
     public String getNomAlgorithme() {
-        return "recherche sync seq";
+        return "recherche async stream 8";
     }
 
     @Override
     public HyperLien<LivreRessource> chercher(Livre l, List<HyperLien<BibliothequeArchive>> bibliotheques, Client client) {
         return bibliotheques
-                .stream()
-                .map(e -> LienVersRessource.proxy(client, e, BibliothequeArchive.class))
-                .map(e -> rechercheSync(e, l))
+                .parallelStream()
+                .map(e -> rechercheAsync(e, l, client))
+                .map(Outils::remplirPromesse)
                 .filter(livreRessourceHyperLien -> !isNull(livreRessourceHyperLien))
                 .findFirst()
                 .orElse(null);

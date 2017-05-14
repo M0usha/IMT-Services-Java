@@ -9,19 +9,18 @@ import java.util.List;
 import static java.util.Objects.isNull;
 
 /**
- * Created by anael on 13/05/2017.
+ * Created by anael on 14/05/2017.
  */
-public class RechercheSynchroneSequentielle extends RechercheSynchroneAbstraite {
-
+public class RechercheSynchroneStreamParallele extends RechercheSynchroneAbstraite {
     @Override
     public String getNomAlgorithme() {
-        return "recherche sync seq";
+        return "recherche sync stream 8";
     }
 
     @Override
     public HyperLien<LivreRessource> chercher(Livre l, List<HyperLien<BibliothequeArchive>> bibliotheques, Client client) {
         return bibliotheques
-                .stream()
+                .parallelStream()
                 .map(e -> LienVersRessource.proxy(client, e, BibliothequeArchive.class))
                 .map(e -> rechercheSync(e, l))
                 .filter(livreRessourceHyperLien -> !isNull(livreRessourceHyperLien))
