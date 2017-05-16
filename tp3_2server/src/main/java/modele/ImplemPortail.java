@@ -46,6 +46,9 @@ public class ImplemPortail implements RechercheAsynchroneDeclenchantRechercheSyn
         algo = null;
         bibliotheques = Initialisation.bibliotheques();
 
+        //8090:8090 8091:8091 8092:8092 8093:8093 8094:8094 8095:8095 8096:8096 8097:8097 8098:8098 8099:8099
+
+
         //Ajout des algos
         this.addAlgo(new RechercheSynchroneSequentielle());
         this.addAlgo(new RechercheSynchroneMultiTaches());
@@ -64,6 +67,7 @@ public class ImplemPortail implements RechercheAsynchroneDeclenchantRechercheSyn
 
     @Override
     public void algorithmeRecherche(AlgorithmeNomme algo) {
+        System.out.println("JE SUIS CALL");
         this.algo = tableAlgos.getOrDefault(algo, this.algo);
     }
 
@@ -74,6 +78,7 @@ public class ImplemPortail implements RechercheAsynchroneDeclenchantRechercheSyn
 
     @Override
     public HyperLiens<LivreRessource> repertorier() {
+        System.out.println("ON REPERTORIE");
         return bibliotheques.stream()
                 .map(e -> LienVersRessource.proxy(client, e, BibliothequeArchive.class))
                 .map(Bibliotheque::repertorier)

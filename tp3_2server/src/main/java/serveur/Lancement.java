@@ -1,6 +1,7 @@
 package serveur;
 
 
+import configuration.ServicePortail;
 import org.glassfish.grizzly.http.server.HttpServer;
 
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
@@ -21,7 +22,7 @@ public class Lancement {
 	public static void main(String[] args) {
 		
 		ResourceConfig config = new ServiceBibliotheque();
-		
+
 		int v = 0;
 		for(HyperLien<?> h : Initialisation.serveurs()){
 			HttpServer serveur1 = GrizzlyHttpServerFactory.createHttpServer(h.getUri(), config);	
