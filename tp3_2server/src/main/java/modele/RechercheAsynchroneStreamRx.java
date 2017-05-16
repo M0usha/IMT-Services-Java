@@ -27,7 +27,6 @@ public class RechercheAsynchroneStreamRx extends RechercheAsynchroneAbstraite {
                         .from(rechercheAsync(bibliotheque, l, client))
                         .subscribeOn(Schedulers.io())
                 )
-                .sorted()
                 .filter(hyperLienObservable -> !isNull(hyperLienObservable))
                 .firstOrDefault(null);
 

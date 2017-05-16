@@ -28,7 +28,6 @@ public class RechercheSynchroneStreamRx extends RechercheSynchroneAbstraite {
                         .fromCallable(() -> rechercheSync(bibliotheque, l))
                         .subscribeOn(Schedulers.io())
                 )
-                .sorted()
                 .filter(hyperLienObservable -> !isNull(hyperLienObservable))
                 .firstOrDefault(null);
 

@@ -6,12 +6,18 @@ import infrastructure.jaxrs.LienVersRessource;
 import javax.ws.rs.client.Client;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import static java.util.Objects.isNull;
 
 /**
  * Created by anael on 13/05/2017.
  */
 public class RechercheAsynchroneMultiTaches extends RechercheAsynchroneAbstraite {
+
+    static ExecutorService executeur = Executors.newCachedThreadPool();
+
 
     @Override
     public String getNomAlgorithme() {
@@ -22,10 +28,18 @@ public class RechercheAsynchroneMultiTaches extends RechercheAsynchroneAbstraite
     public HyperLien<LivreRessource> chercher(Livre l, List<HyperLien<BibliothequeArchive>> bibliotheques, Client client) {
         CountDownLatch end = new CountDownLatch(bibliotheques.size());
 
+
+
         for (HyperLien<BibliothequeArchive> bibliothequeArchiveHyperLien : bibliotheques) {
-            Executors.newCachedThreadPool().execute(() -> {
+            executeur.submit(() -> {
                 BibliothequeArchive a = LienVersRessource.proxy(client, bibliothequeArchiveHyperLien, BibliothequeArchive.class);
-//                rechercheAsyncAvecRappel(a, l);
+                HyperLien<LivreRessource> ressource = rechercheAsync(a, l);
+
+                if (isNull(ressoure)) {
+                    end.countDown();
+                } else {
+                    return;
+                }
             });
         }
 
@@ -35,8 +49,5 @@ public class RechercheAsynchroneMultiTaches extends RechercheAsynchroneAbstraite
             e.printStackTrace();
         }
         return null;
-
-        //TODO Make it work
-
     }
 }
