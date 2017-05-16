@@ -9,6 +9,7 @@ import javax.ws.rs.client.Client;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
+import static java.util.Objects.isNull;
 
 /**
  * Created by anael on 13/05/2017.
@@ -27,7 +28,12 @@ public class RechercheSynchroneMultiTaches extends RechercheSynchroneAbstraite {
         for (HyperLien<BibliothequeArchive> bibliothequeArchiveHyperLien : bibliotheques) {
             Executors.newCachedThreadPool().execute(() -> {
                 BibliothequeArchive a = LienVersRessource.proxy(client, bibliothequeArchiveHyperLien, BibliothequeArchive.class);
-                rechercheSync(a, l);
+                HyperLien<LivreRessource> ressoure = rechercheSync(a, l);
+                end.countDown();
+
+                if (isNull(ressoure)) {
+                    //PASSER LA BARRIERE DIRECTEMENT
+                }
             });
         }
 
@@ -37,8 +43,5 @@ public class RechercheSynchroneMultiTaches extends RechercheSynchroneAbstraite {
             e.printStackTrace();
         }
         return null;
-
-        //TODO Make it work
-
     }
 }
