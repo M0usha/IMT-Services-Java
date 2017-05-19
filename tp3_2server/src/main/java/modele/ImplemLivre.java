@@ -1,8 +1,10 @@
 package modele;
 
+import configuration.JAXRS;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="livre")
+@XmlRootElement(name= JAXRS.SOUSCHEMIN_LIVRE)
 public class ImplemLivre implements Livre {
 
 	private String titre;

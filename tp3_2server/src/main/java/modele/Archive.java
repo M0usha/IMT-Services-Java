@@ -10,7 +10,7 @@ import javax.ws.rs.*;
 public interface Archive {
 	@ReponsesNull404GET
 	@Path("{id}")
-	public LivreRessource sousRessource(@PathParam("id") IdentifiantLivre id) ; // Une sous-ressource ne peut-être une cible de requête.
+	LivreRessource sousRessource(@PathParam("id") IdentifiantLivre id) ; // Une sous-ressource ne peut-être une cible de requête.
 	
 	@POST
 	@ReponsesCreatedPOST

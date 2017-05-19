@@ -1,5 +1,6 @@
 package configuration;
 
+import infrastructure.jaxb.FournisseurTraduction;
 import infrastructure.jaxrs.AdapterReponsesCreatedPOST;
 import infrastructure.jaxrs.AdapterReponsesNull404GET;
 import modele.ImplemBibliotheque;
@@ -17,14 +18,12 @@ public class ServiceBibliotheque extends ResourceConfig {
 		this.register(JacksonFeature.class);
 		
 		// Adaptateurs JAXB
-		this.register(infrastructure.jaxb.FournisseurTraduction.class);
-		
+		this.register(FournisseurTraduction.class);
 
 		// Ressource
 		this.register(ImplemBibliotheque.class);
 		// Sous-ressources
 		this.register(ImplemLivreRessource.class);
-		
 	
 		System.out.println("** Enregistrement des filtres ");
 		// Enregistrement des filtres (alternative possible via providers)
@@ -33,4 +32,3 @@ public class ServiceBibliotheque extends ResourceConfig {
 		System.out.println("* Fin du chargement de " + this.getClass());
 	}
 }
-

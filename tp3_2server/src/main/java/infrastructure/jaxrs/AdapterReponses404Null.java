@@ -5,9 +5,9 @@ import infrastructure.jaxrs.annotations.Reponses404Null;
 import javax.annotation.Priority;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.container.ContainerResponseContext;
-import javax.ws.rs.container.ContainerResponseFilter;
+import javax.ws.rs.client.ClientRequestContext;
+import javax.ws.rs.client.ClientResponseContext;
+import javax.ws.rs.client.ClientResponseFilter;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 import javax.ws.rs.ext.ReaderInterceptor;
@@ -17,7 +17,7 @@ import java.io.IOException;
 @Provider
 @Reponses404Null
 @Priority(Priorities.HEADER_DECORATOR)
-public class AdapterReponses404Null implements ContainerResponseFilter, ReaderInterceptor{
+public class AdapterReponses404Null implements ClientResponseFilter, ReaderInterceptor{
 
 	private static final String PRAGMA = "PRAGMA";
 	private static final String ERREUR_404 = "ERREUR404";
@@ -28,9 +28,7 @@ public class AdapterReponses404Null implements ContainerResponseFilter, ReaderIn
 	}
 
 	@Override
-	public void filter(ContainerRequestContext requete,
-			ContainerResponseContext reponse) throws IOException {
-
+	public void filter(ClientRequestContext requete, ClientResponseContext reponse) throws IOException {
 		if (Response.Status.NOT_FOUND.getStatusCode() == reponse.getStatus()) {
 			reponse.getHeaders().putSingle(PRAGMA, ERREUR_404);
 			reponse.setStatus(Response.Status.OK.getStatusCode());

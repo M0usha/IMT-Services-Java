@@ -1,6 +1,5 @@
 package serveur;
 
-
 import configuration.Initialisation;
 import configuration.Orchestrateur;
 import configuration.ServiceBibliotheque;
@@ -16,7 +15,6 @@ import org.glassfish.jersey.server.ResourceConfig;
 public class Lancement {
 
 	public static void main(String[] args) {
-		
 		ResourceConfig config = new ServiceBibliotheque();
 
 		int v = 0;
@@ -31,9 +29,8 @@ public class Lancement {
 	}
 
 	private static void ajouterLivres(HyperLien<BibliothequeArchive> h, int v) {
-		Archive b = 
-				LienVersRessource.proxy(Orchestrateur.clientJAXRS(), h, BibliothequeArchive.class);
-		for(int i = 0; i < 10; i++){
+		Archive b = LienVersRessource.proxy(Orchestrateur.clientJAXRS(), h, BibliothequeArchive.class);
+		for(int i = 0; i < 10; i++) {
 			b.ajouter(new ImplemLivre("Services" + v + "." + i));
 		}
 	}

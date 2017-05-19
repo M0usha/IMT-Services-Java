@@ -38,7 +38,4 @@ public class Initialisation {
 		}
 		return l;
 	}
-	
-	
-	
 }

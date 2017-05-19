@@ -39,6 +39,10 @@ public class ImplemPortail implements RechercheAsynchroneDeclenchantRechercheSyn
         typeRetourChercherAsync = new GenericType<HyperLien<LivreRessource>>(m.getGenericReturnType());
     }
 
+    public static GenericType<HyperLien<LivreRessource>> typeRetourChercherAsync(){
+        return typeRetourChercherAsync;
+    }
+
     public ImplemPortail() {
         System.out.println("Déploiement de " + this + " : " + this.getClass());
         tableAlgos = new ConcurrentHashMap<AlgorithmeNomme, AlgorithmeRecherche>();
@@ -63,26 +67,20 @@ public class ImplemPortail implements RechercheAsynchroneDeclenchantRechercheSyn
     }
 
     public void algorithmeRecherche(AlgorithmeNomme algo) {
-        System.out.println("JE SUIS CALL");
         this.algo = tableAlgos.getOrDefault(algo, this.algo);
     }
 
     @Override
     public HyperLien<LivreRessource> chercher(Livre l) {
-        System.out.println("ON RECHERCHE");
         return algo.chercher(l, bibliotheques, client);
     }
 
     @Override
     public HyperLiens<LivreRessource> repertorier() {
-        System.out.println("ON REPERTORIE");
         return bibliotheques.stream()
                 .map(e -> LienVersRessource.proxy(client, e, BibliothequeArchive.class))
                 .map(Bibliotheque::repertorier)
                 .reduce(new HyperLiens<>(), Outils::sommeHyperLiens);
     }
 
-    public static GenericType<HyperLien<LivreRessource>> typeRetourChercherAsync(){
-        return typeRetourChercherAsync;
-    }
 }

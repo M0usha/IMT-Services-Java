@@ -17,8 +17,6 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-
-
 @Singleton
 @Path(JAXRS.CHEMIN_BIBLIO)
 public class ImplemBibliotheque implements RechercheAsynchroneDeclenchantRechercheSynchrone, BibliothequeArchive {
@@ -86,7 +84,4 @@ public class ImplemBibliotheque implements RechercheAsynchroneDeclenchantRecherc
 		}
 		return new HyperLiens<LivreRessource>(catalogueRef);
 	}
-
-	
-
 }

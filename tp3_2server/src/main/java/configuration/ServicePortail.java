@@ -12,17 +12,13 @@ public class ServicePortail extends ResourceConfig {
 		System.out.println("* Chargement de " + this.getClass() + " ...");
 		System.out.println("** Configuration");
 		this.register(LoggingFeature.class);
-
 		this.property(LoggingFeature.LOGGING_FEATURE_LOGGER_LEVEL_SERVER, "INFO");
-
 		this.register(JacksonFeature.class);
-		this.property("com.sun.jersey.config.feature.Debug", Boolean.TRUE);
+
 		// Adaptateurs JAXB
 		this.register(infrastructure.jaxb.FournisseurTraduction.class);
 
-
 		// Ressource : un portail
-		System.out.println("Chargement de l'implem portail");
 		this.register(ImplemPortail.class);
 
 		System.out.println("** Enregistrement des filtres ");
@@ -33,4 +29,3 @@ public class ServicePortail extends ResourceConfig {
 		System.out.println("* Fin du chargement de " + this.getClass());
 	}
 }
-
