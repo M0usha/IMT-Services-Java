@@ -1,15 +1,14 @@
 package modele;
 
-import java.util.concurrent.Future;
-
-import javax.ws.rs.*;
-import javax.ws.rs.container.AsyncResponse;
-import javax.ws.rs.container.Suspended;
-
 import configuration.JAXRS;
 import infrastructure.jaxrs.HyperLien;
 import infrastructure.jaxrs.HyperLiens;
 import infrastructure.jaxrs.annotations.ReponsesNull404GET;
+
+import javax.ws.rs.*;
+import javax.ws.rs.container.AsyncResponse;
+import javax.ws.rs.container.Suspended;
+import java.util.concurrent.Future;
 
 public interface Bibliotheque {
 

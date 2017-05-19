@@ -1,26 +1,22 @@
 package modele;
 
 import infrastructure.jaxrs.HyperLien;
-import infrastructure.jaxrs.HyperLiens;
 import infrastructure.jaxrs.LienVersRessource;
-import infrastructure.jaxrs.Outils;
 
 import javax.ws.rs.client.Client;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
 import static java.util.Objects.isNull;
 
 /**
- * Created by anael on 13/05/2017.
+ * @author Anael CHARDAN
  */
 public class RechercheSynchroneMultiTaches extends RechercheSynchroneAbstraite {
 
-    static ExecutorService executeur = Executors.newCachedThreadPool();
+    final static ExecutorService executeur = Executors.newCachedThreadPool();
 
     @Override
     public String getNomAlgorithme() {
@@ -28,16 +24,16 @@ public class RechercheSynchroneMultiTaches extends RechercheSynchroneAbstraite {
     }
 
     @Override
-    public HyperLien<LivreRessource> chercher(Livre l, List<HyperLien<BibliothequeArchive>> bibliotheques, Client client) {
+    public HyperLien<LivreRessource> chercher(Livre livre, List<HyperLien<BibliothequeArchive>> bibliotheques, Client client) {
         CountDownLatch end = new CountDownLatch(bibliotheques.size());
 
-        HyperLien<LivreRessource> ressource = new HyperLien();
+        HyperLien<LivreRessource> ressource = new HyperLien<>();
         HyperLien<LivreRessource> emptyRessource = new HyperLien<>();
 
         for (HyperLien<BibliothequeArchive> bibliothequeArchiveHyperLien : bibliotheques) {
             executeur.submit(() -> {
                 BibliothequeArchive a = LienVersRessource.proxy(client, bibliothequeArchiveHyperLien, BibliothequeArchive.class);
-                HyperLien<LivreRessource> result = rechercheSync(a, l);
+                HyperLien<LivreRessource> result = rechercheSync(a, livre);
 
                 if (isNull(result)) {
                     end.countDown();

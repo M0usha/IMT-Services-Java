@@ -1,13 +1,12 @@
 package configuration;
 
-import org.glassfish.jersey.jackson.JacksonFeature;
-import org.glassfish.jersey.logging.LoggingFeature;
-import org.glassfish.jersey.server.ResourceConfig;
-
 import infrastructure.jaxrs.AdapterReponsesCreatedPOST;
 import infrastructure.jaxrs.AdapterReponsesNull404GET;
 import modele.ImplemBibliotheque;
 import modele.ImplemLivreRessource;
+import org.glassfish.jersey.jackson.JacksonFeature;
+import org.glassfish.jersey.logging.LoggingFeature;
+import org.glassfish.jersey.server.ResourceConfig;
 
 public class ServiceBibliotheque extends ResourceConfig {
 	public ServiceBibliotheque(){

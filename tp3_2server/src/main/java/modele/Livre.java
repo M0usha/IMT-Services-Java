@@ -1,9 +1,10 @@
 package modele;
 
+import configuration.JAXRS;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.xml.bind.annotation.XmlRootElement;
-import configuration.JAXRS;
 
 
 @XmlRootElement(name="livre")

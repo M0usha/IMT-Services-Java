@@ -1,15 +1,12 @@
 package modele;
 
 import infrastructure.jaxrs.HyperLien;
-import infrastructure.jaxrs.LienVersRessource;
+import infrastructure.jaxrs.Outils;
 
 import javax.ws.rs.client.Client;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
+import java.util.Objects;
 import java.util.stream.Collectors;
-
-import static java.util.Objects.isNull;
 
 /**
  * Created by anael on 13/05/2017.
@@ -27,14 +24,8 @@ public class RechercheAsynchroneSequentielle extends RechercheAsynchroneAbstrait
                 .map(e -> rechercheAsync(e, l, client))
                 .collect(Collectors.toList()) // Premiere iteration
                 .stream()
-                .map(future -> { // on démarre la seconde itération
-                    try {
-                        return future.get();
-                    } catch (InterruptedException | ExecutionException e) {
-                    }
-                    return null;
-                })
-                .filter(livreRessourceHyperLien -> !isNull(livreRessourceHyperLien))
+                .map(Outils::remplirPromesse) // seconde iteration
+                .filter(Objects::nonNull)
                 .findFirst()
                 .orElse(null);
     }

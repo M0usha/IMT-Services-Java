@@ -1,12 +1,11 @@
 package infrastructure.jaxrs;
 
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import javax.ws.rs.core.UriBuilder;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 
 @XmlRootElement(name="hyperlien")

@@ -2,11 +2,9 @@ package modele;
 
 import configuration.JAXRS;
 import infrastructure.jaxrs.HyperLien;
-import infrastructure.jaxrs.LienVersRessource;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.InvocationCallback;
-import javax.ws.rs.container.AsyncResponse;
 import java.util.concurrent.Future;
 
 /**

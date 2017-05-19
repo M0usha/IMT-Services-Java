@@ -1,14 +1,13 @@
 package configuration;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-
 import infrastructure.jaxrs.AdapterReponses404Null;
+import infrastructure.jaxrs.AdapterReponsesCreatedPOST;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.logging.LoggingFeature;
 
-import infrastructure.jaxrs.AdapterReponsesCreatedPOST;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
 
 public class Orchestrateur {
 	public static Client clientJAXRS() {

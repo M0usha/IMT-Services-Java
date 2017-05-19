@@ -1,14 +1,14 @@
 package infrastructure.jaxb;
 
-import javax.ws.rs.ext.ContextResolver;
-import javax.ws.rs.ext.Provider;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-
 import infrastructure.jaxrs.HyperLien;
 import infrastructure.jaxrs.HyperLiens;
 import modele.ImplemAlgorithmeNomme;
 import modele.ImplemLivre;
+
+import javax.ws.rs.ext.ContextResolver;
+import javax.ws.rs.ext.Provider;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 
 @Provider
 public class FournisseurTraduction implements ContextResolver<JAXBContext> {

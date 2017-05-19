@@ -1,13 +1,11 @@
 package modele;
 
 import infrastructure.jaxrs.HyperLien;
-import infrastructure.jaxrs.LienVersRessource;
 import infrastructure.jaxrs.Outils;
 
 import javax.ws.rs.client.Client;
 import java.util.List;
-
-import static java.util.Objects.isNull;
+import java.util.Objects;
 
 /**
  * Created by anael on 14/05/2017.
@@ -24,7 +22,7 @@ public class RechercheAsynchroneStreamParallele extends RechercheAsynchroneAbstr
                 .parallelStream()
                 .map(e -> rechercheAsync(e, l, client))
                 .map(Outils::remplirPromesse)
-                .filter(livreRessourceHyperLien -> !isNull(livreRessourceHyperLien))
+                .filter(Objects::nonNull)
                 .findFirst()
                 .orElse(null);
     }

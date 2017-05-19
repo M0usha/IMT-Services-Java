@@ -1,9 +1,9 @@
 package modele;
 
+import configuration.JAXRS;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
-
-import configuration.JAXRS;
 
 /*
  * Une ressource Livre "est" un livre et "a" un livre.

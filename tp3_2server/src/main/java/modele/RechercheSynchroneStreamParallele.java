@@ -5,8 +5,7 @@ import infrastructure.jaxrs.LienVersRessource;
 
 import javax.ws.rs.client.Client;
 import java.util.List;
-
-import static java.util.Objects.isNull;
+import java.util.Objects;
 
 /**
  * Created by anael on 14/05/2017.
@@ -23,7 +22,7 @@ public class RechercheSynchroneStreamParallele extends RechercheSynchroneAbstrai
                 .parallelStream()
                 .map(e -> LienVersRessource.proxy(client, e, BibliothequeArchive.class))
                 .map(e -> rechercheSync(e, l))
-                .filter(livreRessourceHyperLien -> !isNull(livreRessourceHyperLien))
+                .filter(Objects::nonNull)
                 .findFirst()
                 .orElse(null);
     }

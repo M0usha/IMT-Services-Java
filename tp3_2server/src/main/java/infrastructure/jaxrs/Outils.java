@@ -2,13 +2,12 @@ package infrastructure.jaxrs;
 
 import infrastructure.entreesSorties.Flots;
 
+import javax.ws.rs.core.Response;
 import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
-
-import javax.ws.rs.core.Response;
 
 public class Outils {
 	/*

@@ -1,12 +1,11 @@
 package modele;
 
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "algo")
 public class ImplemAlgorithmeNomme implements AlgorithmeNomme{
 
-	@XmlElement(name = "nom")
 	private String nom;
 
 	public ImplemAlgorithmeNomme() {
@@ -18,6 +17,7 @@ public class ImplemAlgorithmeNomme implements AlgorithmeNomme{
 	}
 
 	@Override
+	@XmlAttribute(name = "nom")
 	public String getNomAlgorithme() {
 		return this.nom;
 	}
@@ -38,5 +38,4 @@ public class ImplemAlgorithmeNomme implements AlgorithmeNomme{
 	public int hashCode() {
 		return this.getNomAlgorithme().hashCode();
 	}
-	
 }

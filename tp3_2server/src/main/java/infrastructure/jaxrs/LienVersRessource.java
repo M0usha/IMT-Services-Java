@@ -1,9 +1,9 @@
 package infrastructure.jaxrs;
 
+import org.glassfish.jersey.client.proxy.WebResourceFactory;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
-
-import org.glassfish.jersey.client.proxy.WebResourceFactory;
 
 public class LienVersRessource {
 

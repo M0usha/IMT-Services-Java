@@ -1,12 +1,11 @@
 package configuration;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.ws.rs.core.UriBuilder;
-
 import infrastructure.jaxrs.HyperLien;
 import modele.BibliothequeArchive;
+
+import javax.ws.rs.core.UriBuilder;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Initialisation {
 

@@ -1,7 +1,5 @@
 package infrastructure.jaxrs;
 
-import java.io.IOException;
-
 import infrastructure.jaxrs.annotations.ReponsesCreatedPOST;
 
 import javax.annotation.Priority;
@@ -12,6 +10,7 @@ import javax.ws.rs.container.ContainerResponseFilter;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
+import java.io.IOException;
 
 @Provider
 @ReponsesCreatedPOST

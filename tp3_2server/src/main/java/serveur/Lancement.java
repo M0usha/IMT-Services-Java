@@ -1,14 +1,7 @@
 package serveur;
 
 
-import configuration.ServicePortail;
-import org.glassfish.grizzly.http.server.HttpServer;
-
-import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
-import org.glassfish.jersey.server.ResourceConfig;
-
 import configuration.Initialisation;
-
 import configuration.Orchestrateur;
 import configuration.ServiceBibliotheque;
 import infrastructure.jaxrs.HyperLien;
@@ -16,6 +9,9 @@ import infrastructure.jaxrs.LienVersRessource;
 import modele.Archive;
 import modele.BibliothequeArchive;
 import modele.ImplemLivre;
+import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.server.ResourceConfig;
 
 public class Lancement {
 

@@ -1,14 +1,12 @@
 package modele;
 
 import infrastructure.jaxrs.HyperLien;
-import infrastructure.jaxrs.LienVersRessource;
 import rx.Observable;
 import rx.schedulers.Schedulers;
 
 import javax.ws.rs.client.Client;
 import java.util.List;
-
-import static java.util.Objects.isNull;
+import java.util.Objects;
 
 /**
  * Created by anael on 14/05/2017.
@@ -27,7 +25,7 @@ public class RechercheAsynchroneStreamRx extends RechercheAsynchroneAbstraite {
                         .from(rechercheAsync(bibliotheque, l, client))
                         .subscribeOn(Schedulers.io())
                 )
-                .filter(hyperLienObservable -> !isNull(hyperLienObservable))
+                .filter(Objects::nonNull)
                 .firstOrDefault(null);
 
         return observable.toBlocking().single();

@@ -1,22 +1,11 @@
 package modele;
 
-import java.util.List;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.client.Client;
-
-import configuration.JAXRS;
 import infrastructure.jaxrs.HyperLien;
 
-public interface AlgorithmeRecherche extends AlgorithmeNomme{
+import javax.ws.rs.client.Client;
+import java.util.List;
 
-	@GET
-	@Path(JAXRS.SOUSCHEMIN_ALGO_RECHERCHE)
-	@Consumes(JAXRS.TYPE_MEDIA)
-	@Produces(JAXRS.TYPE_MEDIA)
+public interface AlgorithmeRecherche extends AlgorithmeNomme{
 	HyperLien<LivreRessource> chercher(Livre l, List<HyperLien<BibliothequeArchive>> bibliotheques, Client client);
 
 	default AlgorithmeNomme nom(){

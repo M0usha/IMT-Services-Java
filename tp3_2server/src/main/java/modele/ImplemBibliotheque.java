@@ -1,23 +1,21 @@
 package modele;
 
+import configuration.JAXRS;
 import infrastructure.jaxrs.HyperLien;
 import infrastructure.jaxrs.HyperLiens;
 import infrastructure.jaxrs.Outils;
 
-import java.net.URI;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.Set;
-
 import javax.inject.Singleton;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
-
-import configuration.JAXRS;
+import java.net.URI;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 
 

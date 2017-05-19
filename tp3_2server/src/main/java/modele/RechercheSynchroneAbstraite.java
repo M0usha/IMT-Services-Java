@@ -2,9 +2,6 @@ package modele;
 
 import infrastructure.jaxrs.HyperLien;
 
-import javax.ws.rs.client.Client;
-import java.util.List;
-
 /**
  * Created by anael on 12/05/2017.
  */

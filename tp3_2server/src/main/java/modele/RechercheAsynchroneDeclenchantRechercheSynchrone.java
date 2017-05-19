@@ -1,14 +1,13 @@
 package modele;
 
-import java.util.concurrent.Future;
+import infrastructure.jaxrs.HyperLien;
+import infrastructure.jaxrs.Outils;
 
 import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.core.Response;
-
-import infrastructure.jaxrs.HyperLien;
-import infrastructure.jaxrs.Outils;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public interface RechercheAsynchroneDeclenchantRechercheSynchrone extends Bibliotheque {
 

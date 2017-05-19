@@ -1,10 +1,9 @@
 package infrastructure.jaxrs;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.LinkedList;
+import java.util.List;
 
 @XmlRootElement(name = "liste")
 public class HyperLiens<T> {
