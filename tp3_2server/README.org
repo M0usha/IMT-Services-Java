@@ -1,0 +1,88 @@
+Anaël CHARDAN.
+
+Bilan :
+
+Le client se trouve dans le meme projet pour en limiter le nombre, et n'apportant pas un gain visible.
+
+Sur une seule machine (MacBook Pro 2016 - 16Go de RAM - Intel Core i7 2,6 GHz - 4 Core)
+
+--- Synchrone ---
+
+Recherche Synchrone Sequentielle:
+- 4032 ms (Fructueuse)
+- 15117 ms (Infructueuse)
+
+Recherche Synchrone Multi-tâche:
+- 47 ms (Fructueuse)
+- 1539 ms (Infructueuse)
+
+Recherche Synchrone Stream Parallele:
+- 1750 ms (Fructueuse)
+- 3019 ms (Infructueuse)
+
+Recherche Synchrone RX-Java:
+- 109 ms (Fructueuse)
+- 1523 ms (Infructueuse)
+
+--- Asynchrone ---
+
+Recherche Asynchrone Sequentielle:
+- 1602 ms (Fructueuse)
+- 1522 ms (Infructueuse)
+
+Recherche Asynchrone Multi-tâche:
+- 44 ms (Fructueuse)
+- 1521 ms (Infructueuse)
+
+Recherche Asynchrone Stream Parallele:
+- 1608 ms (Fructueuse)
+- 3015 ms (Infructueuse)
+
+Recherche Asynchrone RX-Java:
+- 25 ms (Fructueuse)
+- 1527 ms (Infructueuse)
+
+Sur deux machines:
+(MacBook Pro 2016 - 16Go de RAM - Intel Core i7 2,6 GHz - 4 Core)
++
+(Dell XPS - 8 Go de RAM - Intel Core i7 2,7 Ghz - 4 Core)
+
+--- Synchrone ---
+
+Recherche Synchrone Sequentielle:
+- 13341 ms (Fructueuse)
+- 17701 ms (Infructueuse)
+
+Recherche Synchrone Multi-tâche:
+- 122 ms (Fructueuse)
+- 2147 ms (Infructueuse)
+
+Recherche Synchrone Stream Parallele:
+- 3447 ms (Fructueuse)
+- 3625 ms (Infructueuse)
+
+Recherche Synchrone RX-Java:
+- 398 ms (Fructueuse)
+- 1834 ms (Infructueuse)
+
+--- Asynchrone ---
+
+Recherche Asynchrone Sequentielle:
+- 1831 ms (Fructueuse)
+- 1781 ms (Infructueuse)
+
+Recherche Asynchrone Multi-tâche:
+- 372 ms (Fructueuse)
+- 1800 ms (Infructueuse)
+
+Recherche Asynchrone Stream Parallele:
+- 3018 ms (Fructueuse)
+- 3496 ms (Infructueuse)
+
+Recherche Asynchrone RX-Java:
+- 941 ms (Fructueuse)
+- 1803 ms (Infructueuse)
+
+Conclusion:
+C'est toujours plus lent lorsqu'il y'a plusieurs machines,
+de plus la différence entre Asynchrone et Synchrone n'est pas toujours notable concernant le temps de réponse.
